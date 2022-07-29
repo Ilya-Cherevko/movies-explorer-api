@@ -1,21 +1,19 @@
 const mongoose = require('mongoose');
-const { regExp } = require('../utils/constants');
+const validator = require('validator');
+const { urlValidatorConfig, schemaConfig } = require('../utils/configs');
+// const { regExp } = require('../utils/constants');
 
-const cardSchema = new mongoose.Schema({
+const movieSchema = new mongoose.Schema({
   country: {
     type: String,
     required: true,
-    minlength: [2, 'Должно быть не меньше 2, имеется {VALUE}'],
-    maxlength: 30,
   },
   director: {
     type: String,
     required: true,
-    minlength: [2, 'Должно быть не меньше 2, имеется {VALUE}'],
-    maxlength: 30,
   },
   duration: {
-    type: number,
+    type: Number,
     required: true,
   },
   year: {
@@ -25,15 +23,13 @@ const cardSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
-    minlength: [2, 'Должно быть не меньше 2, имеется {VALUE}'],
-    maxlength: 200,
   },
   image: {
     type: String,
     required: true,
     validate: {
-      validator(link) {
-        return regExp.test(link);
+      validator(imageUrl) {
+        return validator.isUrl(imageUrl, urlValidationConfig);
       },
     },
   },
@@ -41,8 +37,8 @@ const cardSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator(link) {
-        return regExp.test(link);
+      validator(imageUrl) {
+        return validator.isUrl(imageUrl, urlValidationConfig);
       },
     },
   },
@@ -50,33 +46,28 @@ const cardSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator(link) {
-        return regExp.test(link);
+      validator(imageUrl) {
+        return validator.isUrl(imageUrl, urlValidationConfig);
       },
     },
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'user',
   },
   movieId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Number,
     required: true,
-    ref: 'user',
   },
+
   nameRU: {
     type: String,
     required: true,
-    minlength: [2, 'Должно быть не меньше 2, имеется {VALUE}'],
-    maxlength: 200,
   },
   nameEN : {
     type: String,
     required: true,
-    minlength: [2, 'Должно быть не меньше 2, имеется {VALUE}'],
-    maxlength: 200,
   },
-});
+}, schemaConfig);
 
-module.exports = mongoose.model('card', cardSchema);
+module.exports = mongoose.model('movie', movieSchema);
