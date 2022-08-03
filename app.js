@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
 const routes = require('./routes');
-const { addressMongoDB } = require('./utils/constants');
+const { adresMongoDB } = require('./utils/constants');
 const cors = require('./middlewares/cors');
 const error = require('./middlewares/error');
 const limiter = require('./middlewares/limiter');
@@ -15,14 +15,13 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(cors);
-
 // подключаемся к серверу mongo;
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb');
-// mongoose.connect(addressMongoDB);
+mongoose.connect(adresMongoDB);
 
 app.use(bodyParser.json()); // для собирания JSON-формата
 app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
+
+app.use(cors);
 
 app.use(helmet());
 

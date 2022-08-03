@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const { urlValidatorConfig, schemaConfig } = require('../utils/configs');
-// const { regExp } = require('../utils/constants');
+const { urlValidatorConfig, schemaConfig } = require('../utils/config');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -29,7 +28,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(imageUrl) {
-        return validator.isUrl(imageUrl, urlValidationConfig);
+        return validator.isUrl(imageUrl, urlValidatorConfig);
       },
     },
   },
@@ -38,7 +37,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(imageUrl) {
-        return validator.isUrl(imageUrl, urlValidationConfig);
+        return validator.isUrl(imageUrl, urlValidatorConfig);
       },
     },
   },
@@ -47,7 +46,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(imageUrl) {
-        return validator.isUrl(imageUrl, urlValidationConfig);
+        return validator.isUrl(imageUrl, urlValidatorConfig);
       },
     },
   },
@@ -64,7 +63,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  nameEN : {
+  nameEN: {
     type: String,
     required: true,
   },

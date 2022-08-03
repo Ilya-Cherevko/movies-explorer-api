@@ -6,7 +6,7 @@ const {
 } = require('../controllers/movies');
 const {
   validationFilm,
-  vvalidationFilmId,
+  validationFilmId,
 } = require('../utils/validation');
 
 router.get('/', getFilms);

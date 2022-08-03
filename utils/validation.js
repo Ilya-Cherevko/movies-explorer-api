@@ -1,7 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
-const { regExp } = require('./constants');
-// const validator = require('validator');
-// const { urlValidatorConfig } = require('./configs');
+const validator = require('validator');
+const { urlValidatorConfig } = require('./config');
 
 const checkURL = (value, helpers) => {
   const isValidURL = validator.isURL(value, urlValidatorConfig);

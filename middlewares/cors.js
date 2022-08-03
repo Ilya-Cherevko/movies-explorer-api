@@ -1,7 +1,7 @@
 const allowedCors = [
   'http://ilya-cherevko.students.nomorepartiesxyz.ru',
   'https://ilya-cherevko.students.nomorepartiesxyz.ru',
-  'http://localhost:3001',
+  'http://localhost:3000',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,PATCH,POST,DELETE';
