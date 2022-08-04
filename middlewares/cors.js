@@ -1,6 +1,6 @@
 const allowedCors = [
-  'http://ilya-cherevko.students.nomorepartiesxyz.ru',
-  'https://ilya-cherevko.students.nomorepartiesxyz.ru',
+  'http://titanikum.nomoredomains.sbs',
+  'https://titanikum.nomoredomains.sbs',
   'http://localhost:3000',
 ];
 

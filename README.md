@@ -11,7 +11,8 @@ NodeJS
 Express
 MongoDB
 Адрес сервера
-https://
+Фронт http://titanikum.nomoredomains.sbs
+Бек https://api.titanikum.nomoredomains.sbs
 
 Установка и запуск сервера
 Клонировать репозиторий:
