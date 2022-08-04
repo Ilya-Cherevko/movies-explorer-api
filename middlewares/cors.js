@@ -1,6 +1,7 @@
 const allowedCors = [
   'http://titanikum.nomoredomains.sbs',
   'https://titanikum.nomoredomains.sbs',
+  'https://api.titanikum.nomoredomains.sbs',
   'http://localhost:3000',
 ];
 
