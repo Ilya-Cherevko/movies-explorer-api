@@ -30,8 +30,7 @@ const userSchema = new mongoose.Schema({
 }, schemaConfig);
 // добавим метод findUserByCredentials схеме пользователя
 // у него будет два параметра — почта и пароль
-// eslint-disable-next-line func-names
-userSchema.statics.findUserByCredentials = function (email, password) {
+userSchema.statics.findUserByCredentials = function findUserByCredentials(email, password) {
   return this.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {

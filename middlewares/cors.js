@@ -3,6 +3,7 @@ const allowedCors = [
   'https://titanikum.nomoredomains.sbs',
   'https://api.titanikum.nomoredomains.sbs',
   'http://localhost:3000',
+  'http://localhost:3001',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,PATCH,POST,DELETE';

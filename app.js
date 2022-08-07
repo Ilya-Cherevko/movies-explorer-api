@@ -37,6 +37,5 @@ app.use(errors()); // обработчик ошибок celebrate
 app.use(error);
 
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`Сервер работает на ${PORT} порту`);
 });

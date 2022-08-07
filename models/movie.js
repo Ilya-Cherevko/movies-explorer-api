@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
-const { urlValidatorConfig, schemaConfig } = require('../utils/config');
+// const validator = require('validator');
+const { schemaConfig } = require('../utils/config');
+const { regExp } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -26,29 +27,32 @@ const movieSchema = new mongoose.Schema({
   image: {
     type: String,
     required: true,
-    validate: {
-      validator(imageUrl) {
-        return validator.isUrl(imageUrl, urlValidatorConfig);
-      },
-    },
+    validate: (v) => regExp.test(v),
+  //  validate: {
+  //    validator(imageUrl) {
+  //      return validator.isUrl(imageUrl, urlValidatorConfig);
+  //    },
+  //  },
   },
   trailerLink: {
     type: String,
     required: true,
-    validate: {
-      validator(imageUrl) {
-        return validator.isUrl(imageUrl, urlValidatorConfig);
-      },
-    },
+    validate: (v) => regExp.test(v),
+  //  validate: {
+  //    validator(imageUrl) {
+  //      return validator.isUrl(imageUrl, urlValidatorConfig);
+  //    },
+  //  },
   },
   thumbnail: {
     type: String,
     required: true,
-    validate: {
-      validator(imageUrl) {
-        return validator.isUrl(imageUrl, urlValidatorConfig);
-      },
-    },
+    validate: (v) => regExp.test(v),
+  //  validate: {
+  //    validator(imageUrl) {
+  //      return validator.isUrl(imageUrl, urlValidatorConfig);
+  //    },
+  // },
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
