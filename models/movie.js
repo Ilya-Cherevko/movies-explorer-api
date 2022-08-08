@@ -27,7 +27,7 @@ const movieSchema = new mongoose.Schema({
   image: {
     type: String,
     required: true,
-    validate: (v) => regExp.test(v),
+    validate: (val) => regExp.test(val),
   //  validate: {
   //    validator(imageUrl) {
   //      return validator.isUrl(imageUrl, urlValidatorConfig);
@@ -37,7 +37,7 @@ const movieSchema = new mongoose.Schema({
   trailerLink: {
     type: String,
     required: true,
-    validate: (v) => regExp.test(v),
+    validate: (val) => regExp.test(val),
   //  validate: {
   //    validator(imageUrl) {
   //      return validator.isUrl(imageUrl, urlValidatorConfig);
@@ -47,7 +47,7 @@ const movieSchema = new mongoose.Schema({
   thumbnail: {
     type: String,
     required: true,
-    validate: (v) => regExp.test(v),
+    validate: (val) => regExp.test(val),
   //  validate: {
   //    validator(imageUrl) {
   //      return validator.isUrl(imageUrl, urlValidatorConfig);

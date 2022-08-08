@@ -22,11 +22,6 @@ const getUserInfo = (req, res, next) => {
 const updateUserInfo = (req, res, next) => {
   const userId = req.user._id;
   const { email, name } = req.body;
-  // Неверная ошибка + в принципе лишняя проверка:
-  if (!email || !name) {
-    next(new NotFoundError('Переданы некорректные данные при обновлении профиля'));
-    return;
-  }
 
   User.findByIdAndUpdate(userId, { email, name }, updateControllerConfig)
     .then((user) => {
@@ -48,11 +43,6 @@ const updateUserInfo = (req, res, next) => {
 
 const createUser = (req, res, next) => {
   const { email, password, name } = req.body;
-  // Неверная ошибка + в принципе лишняя проверка:
-  if (!email || !password || !name) {
-    next(new NotFoundError('Переданы некорректные данные при создании пользователя'));
-    return;
-  }
 
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
@@ -83,11 +73,6 @@ const createUser = (req, res, next) => {
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-  // Неверная ошибка + в принципе лишняя проверка:
-  if (!email || !password) {
-    next(new NotFoundError('Переданы некорректные данные при входе'));
-    return;
-  }
 
   User.findUserByCredentials(email, password)
     .then((user) => {
