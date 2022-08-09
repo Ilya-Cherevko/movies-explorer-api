@@ -28,31 +28,16 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: (val) => regExp.test(val),
-  //  validate: {
-  //    validator(imageUrl) {
-  //      return validator.isUrl(imageUrl, urlValidatorConfig);
-  //    },
-  //  },
   },
   trailerLink: {
     type: String,
     required: true,
     validate: (val) => regExp.test(val),
-  //  validate: {
-  //    validator(imageUrl) {
-  //      return validator.isUrl(imageUrl, urlValidatorConfig);
-  //    },
-  //  },
   },
   thumbnail: {
     type: String,
     required: true,
     validate: (val) => regExp.test(val),
-  //  validate: {
-  //    validator(imageUrl) {
-  //      return validator.isUrl(imageUrl, urlValidatorConfig);
-  //    },
-  // },
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
