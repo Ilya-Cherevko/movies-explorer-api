@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
-// const { default: isURL } = require('validator/lib/isURL');
 const validator = require('validator');
-const { urlValidatorConfig , schemaConfig } = require('../utils/config');
-// const { regExp } = require('../utils/constants');
+const { urlValidatorConfig, schemaConfig } = require('../utils/config');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -28,8 +26,6 @@ const movieSchema = new mongoose.Schema({
   image: {
     type: String,
     required: true,
-    // validate: (val) => regExp.test(val),
-    // validator: (val) => isURL(val),
     validate: {
       validator(imageURL) {
         return validator.isURL(imageURL, urlValidatorConfig);
@@ -39,8 +35,6 @@ const movieSchema = new mongoose.Schema({
   trailerLink: {
     type: String,
     required: true,
-    // validate: (val) => regExp.test(val),
-    // validator: (val) => isURL(val),
     validate: {
       validator(imageURL) {
         return validator.isURL(imageURL, urlValidatorConfig);
@@ -50,8 +44,6 @@ const movieSchema = new mongoose.Schema({
   thumbnail: {
     type: String,
     required: true,
-    // validate: (val) => regExp.test(val),
-    // validator: (val) => isURL(val),
     validate: {
       validator(imageURL) {
         return validator.isURL(imageURL, urlValidatorConfig);

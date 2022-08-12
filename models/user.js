@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { schemaConfig } = require('../utils/config');
+const { ERRORS } = require('../utils/constants');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -35,14 +36,14 @@ userSchema.statics.findUserByCredentials = function findUserByCredentials(email,
     .then((user) => {
       if (!user) {
         // пользователь не найден — отклоняем промис с ошибкой и переходим в блок catch
-        return Promise.reject(new Error('Неправильные почта или пароль'));
+        return Promise.reject(new Error(ERRORS.USER.AUTH));
       }
       // сравниваем переданный пароль и хеш из базы
       return bcrypt.compare(password, user.password)
         .then((matched) => {
           if (!matched) {
             // хеши не совпали — отклоняем промис
-            return Promise.reject(new Error('Неправильные почта или пароль'));
+            return Promise.reject(new Error(ERRORS.USER.AUTH));
           }
           // теперь user доступен
           return user;

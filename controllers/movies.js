@@ -1,4 +1,5 @@
 const Movie = require('../models/movie');
+const { ERRORS } = require('../utils/constants');
 const NotFoundError = require('../utils/errors/not-found');
 const BadRequestError = require('../utils/errors/bad-req');
 const ForbiddenError = require('../utils/errors/forbid');
@@ -49,7 +50,7 @@ const createFilm = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при сохранении'));
+        next(new BadRequestError(ERRORS.MOVIE.INCORRECT));
       }
       next(err);
     });
@@ -62,10 +63,10 @@ const deleteFilm = (req, res, next) => {
   Movie
     .findById(filmId)
     .then((film) => {
-      if (!film) throw new NotFoundError('Фильм с указанным id не найден');
+      if (!film) throw new NotFoundError(ERRORS.MOVIE.FOUND);
 
       const ownerFilmId = film.owner.toString();
-      if (ownerFilmId !== userId) { throw new ForbiddenError('Недостаточно прав для удаления'); }
+      if (ownerFilmId !== userId) { throw new ForbiddenError(ERRORS.MOVIE.PERMISSIONS); }
 
       return Movie.findByIdAndDelete(filmId);
     })
@@ -76,7 +77,7 @@ const deleteFilm = (req, res, next) => {
 
     .catch((err) => {
       if (err.kind === 'ObjectId') {
-        next(new BadRequestError('Передан некорректный id фильма'));
+        next(new BadRequestError(ERRORS.MOVIE.ID));
         return;
       }
       next(err);

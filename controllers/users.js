@@ -1,19 +1,19 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const { secretKey } = require('../utils/constants');
+const { ERRORS, secretKey } = require('../utils/constants');
 const { jwtConfig, updateControllerConfig } = require('../utils/config');
 const ConflictError = require('../utils/errors/conflict');
 const NotFoundError = require('../utils/errors/not-found');
 const BadRequestError = require('../utils/errors/bad-req');
-const AuthError = require('../utils/errors/auth');
+// const AuthError = require('../utils/errors/auth');
 
 const getUserInfo = (req, res, next) => {
   const userId = req.user._id;
 
   User.findById(userId)
     .then((user) => {
-      if (!user) { throw new NotFoundError('Пользователь по указанному id не найден'); }
+      if (!user) { throw new NotFoundError(ERRORS.USER.FOUND); }
       res.send(user);
     })
     .catch((err) => next(err));
@@ -29,12 +29,12 @@ const updateUserInfo = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
+        next(new BadRequestError(ERRORS.USER.INCORRECT_UPDATE));
         return;
       }
 
       if (err.code === 11000) {
-        next(new ConflictError('Такой пользователь уже существует!'));
+        next(new ConflictError(ERRORS.USER.EXISTS));
         return;
       }
       next(err);
@@ -58,12 +58,12 @@ const createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при создании пользователя'));
+        next(new BadRequestError(ERRORS.USER.INCORRECT_CREATE));
         return;
       }
 
       if (err.code === 11000) {
-        next(new ConflictError('Такой пользователь уже существует!'));
+        next(new ConflictError(ERRORS.USER.EXISTS));
         return;
       }
 
@@ -84,7 +84,10 @@ const login = (req, res, next) => {
 
       res.send({ token });
     })
-    .catch((err) => next(new AuthError(err.message)));
+    // .catch((err) => next(new AuthError(err.message)));
+    .catch((err) => {
+      next(err);
+    });
 };
 
 module.exports = {

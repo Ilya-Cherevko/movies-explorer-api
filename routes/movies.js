@@ -13,6 +13,6 @@ router.get('/', getFilms);
 
 router.post('/', validationFilm, createFilm);
 
-router.delete('/:Id', validationFilmId, deleteFilm);
+router.delete('/:id', validationFilmId, deleteFilm);
 
 module.exports = router;
