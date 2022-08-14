@@ -6,7 +6,6 @@ const { jwtConfig, updateControllerConfig } = require('../utils/config');
 const ConflictError = require('../utils/errors/conflict');
 const NotFoundError = require('../utils/errors/not-found');
 const BadRequestError = require('../utils/errors/bad-req');
-// const AuthError = require('../utils/errors/auth');
 
 const getUserInfo = (req, res, next) => {
   const userId = req.user._id;
@@ -84,7 +83,6 @@ const login = (req, res, next) => {
 
       res.send({ token });
     })
-    // .catch((err) => next(new AuthError(err.message)));
     .catch((err) => {
       next(err);
     });
